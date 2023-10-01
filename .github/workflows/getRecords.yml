@@ -7,6 +7,8 @@ on:
 jobs:
   getdata:
     runs-on: ubuntu-latest
+    env:
+       export KINTONE_API_TOKEN: $JNKYKN_KINTONE_API_TOKEN_APPID2
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
@@ -14,8 +16,6 @@ jobs:
           node-version: '18'
       - name: install kintone-api-client
         run: npm install @kintone/rest-api-client
-      - name: install kintone-api-client
-        run: export KINTONE_API_TOKEN = ${{ env.JNKYKN_KINTONE_API_TOKEN_APPID2 }}
       - name: test job(get kintone records)
         run: node jobs/getKintoneRecords.js
       
