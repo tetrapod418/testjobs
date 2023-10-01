@@ -1,0 +1,15 @@
+name: Run textlint
+
+on: pull_request
+
+jobs:
+  textlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: test job(local repo)
+        run: src/testjob.js
+      
