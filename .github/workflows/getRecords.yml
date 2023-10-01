@@ -12,6 +12,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
+      - name: install kintone-api-client
+        run: npm install @kintone/rest-api-client
       - name: test job(get kintone records)
         run: node jobs/getKintoneRecords.js
       
