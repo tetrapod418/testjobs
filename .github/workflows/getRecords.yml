@@ -1,15 +1,17 @@
-name: Run testjob
+name: Run get kintone records
 
-on: pull_request
+on:
+  workflow_dispatch: 
+  pull_request:
 
 jobs:
-  textlint:
+  getdata:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: test job(local repo)
+      - name: test job(get kintone records)
         run: node jobs/getKintoneRecords.js
       
