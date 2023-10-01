@@ -12,5 +12,5 @@ jobs:
         with:
           node-version: '18'
       - name: test job(local repo)
-        run: src/testjob.js
+        run: node src/testjob.js
       
