@@ -8,7 +8,7 @@ jobs:
   getdata:
     runs-on: ubuntu-latest
     env:
-       export KINTONE_API_TOKEN: $JNKYKN_KINTONE_API_TOKEN_APPID2
+       KINTONE_API_TOKEN: ${{ vars.JNKYKN_KINTONE_API_TOKEN_APPID2 }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
