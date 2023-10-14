@@ -30,7 +30,6 @@ function getQRCodeUrl(url) {
       // レコードの取得
       const resp = await client.record.getRecords(params);
       console.log(resp.records);
-      const jsonRespose = await resp.json();
       const arrayOfLists = resp.records.map(
           record => {app, id}
           )
