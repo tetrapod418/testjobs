@@ -34,7 +34,7 @@ function getQRCodeUrl(url) {
       const updateIds = resp.records.map(
         // 取得レコードのステータス更新
         (await client.record.updateRecord(2,
-            {app: APP_ID, id: value.id.value, 
+            {app: APP_ID, id: Record.id.value, 
               record: {
                 'ステータス': {
                   'value': 'published'
