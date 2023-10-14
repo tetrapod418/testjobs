@@ -21,7 +21,7 @@ function getQRCodeUrl(url) {
       // リクエストパラメータの設定
       const APP_ID = 2;
       const query_string = 'ステータス="accepted" order by $id';
-      const params = {
+      const getparams = {
         app: APP_ID,
         fields:['$id', 'ステータス', 'title', 'URL', 'descriptions'],
         query: query_string
@@ -29,13 +29,13 @@ function getQRCodeUrl(url) {
       
   
       // レコードの取得
-      const resp = await client.record.getRecords(params);
+      const resp = await client.record.getRecords(getparams);
       console.log(resp.records);
-      const updateIds = resp.records.map(
+/*       const updateIds = resp.records.map(
         // 取得レコードのステータス更新
         ( 
-          await client.record.updateRecord(2,
-            {app: APP_ID, id: 2, 
+          client.record.updateRecord(
+            {app: APP_ID, id, 
               record: {
                 'ステータス': {
                   'value': 'published'
@@ -43,7 +43,15 @@ function getQRCodeUrl(url) {
     
               }})
         ));
+ */        client.record.updateRecord(
+          {app: APP_ID, id: resp.records[0], 
+            record: {
+              'ステータス': {
+                'value': 'published'
+              }
   
+            }})
+
     } catch (err) {
       console.log(err);
     }
