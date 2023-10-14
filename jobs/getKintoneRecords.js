@@ -35,7 +35,7 @@ function getQRCodeUrl(url) {
           )
         // 取得レコードのステータス更新
        await arrayOfLists.map(client.record.updateRecord({
-          params:{app, id, 
+          params:{app: record.app, id: record.id, 
             record: {
               'ステータス': {
                 'value': 'published'
