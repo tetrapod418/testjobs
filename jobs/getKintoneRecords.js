@@ -30,16 +30,18 @@ function getQRCodeUrl(url) {
       // レコードの取得
       const resp = await client.record.getRecords(params);
       console.log(resp.records);
+      const jsonRespose = await resp.json();
       const arrayOfLists = resp.records.map(
-        params => {
+          record => {app, id}
+          )
         // 取得レコードのステータス更新
-        client.record.updateRecord({
-          params:{app: APP_ID, id, 
+       await arrayOfLists.map(client.record.updateRecord({
+          params:{app, id, 
             record: {
               'ステータス': {
                 'value': 'published'
             }}}
-          })});
+          }));
  
     } catch (err) {
       console.log(err);
