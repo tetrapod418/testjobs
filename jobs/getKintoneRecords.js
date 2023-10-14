@@ -34,7 +34,7 @@ function getQRCodeUrl(url) {
           record => {
             // 取得レコードのステータス更新
             client.record.updateRecord({
-              params:{app: record.app, id: record.id, 
+              params:{app: record[app].value, id: record[id].value, 
                 record: {
                   'ステータス': {
                     'value': 'published'
