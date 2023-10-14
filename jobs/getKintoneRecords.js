@@ -1,6 +1,6 @@
 'use strict';
 
-const {KintoneRestAPIClient} = require('@kintone/rest-api-client');
+const {KintoneRestAPIClient, KintoneRecordField} = require('@kintone/rest-api-client');
 
 (async () => {
     try {
@@ -25,7 +25,23 @@ const {KintoneRestAPIClient} = require('@kintone/rest-api-client');
       // レコードの取得
       const resp = await client.record.getRecords(params);
       console.log(resp.records);
-      //return JSON.stringify(resp.records);
+      const arrayOfLists = resp.records.map(
+        record => <dl><dt>{record.title.value}</dt><dd className="ddimg"><img src={getQRCodeUrl(record.URL.value)} alt={record.URL.value} title={record.title.value} /> </dd><dd className="descriptions">{record.descriptions.value}</dd></dl>
+        )
+        // 取得レコードのステータス更新
+        const updateParams = {
+          app: APP_ID,
+          id: record.id.value,
+          record: {
+            'ステータス': {
+              'value': 'published'
+            }
+          }
+        }
+        console.log(`record.id.value = ${record.id.value}`);
+          const updated = await client.record.updateRecord(2,updateParams)
+        //return arrayOfLists;
+    
     } catch (err) {
       console.log(err);
     }
