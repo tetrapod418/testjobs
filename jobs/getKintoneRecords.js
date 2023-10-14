@@ -35,7 +35,7 @@ function getQRCodeUrl(url) {
         // 取得レコードのステータス更新
         ( 
           await client.record.updateRecord(2,
-            {app: APP_ID, id: '$id'.value, 
+            {app: APP_ID, id: Record["$id"], 
               record: {
                 'ステータス': {
                   'value': 'published'
