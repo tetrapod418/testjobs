@@ -1,0 +1,27 @@
+{
+  "name": "get-kintone-records",
+  "version": "1.0.0",
+  "description": "for GitHub Actions Practice #2 # README",
+  "main": "index.js",
+  "scripts": {
+    "lint": "textlint *.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tetrapod418/practice-github-actions.git"
+  },
+  "keywords": [],
+  "author": "jnkykn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tetrapod418/practice-github-actions/issues"
+  },
+  "homepage": "https://github.com/tetrapod418/practice-github-actions#readme",
+  "devDependencies": {
+    "textlint": "^13.3.3",
+    "textlint-rule-ja-no-mixed-period": "^3.0.1"
+  },
+  "dependencies": {
+    "@kintone/rest-api-client": "^4.1.1"
+  }
+}

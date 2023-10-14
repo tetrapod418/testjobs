@@ -1,0 +1,7 @@
+{
+  "plugins": {},
+  "filters": {},
+  "rules": {
+    "ja-no-mixed-period": true
+  }
+}
