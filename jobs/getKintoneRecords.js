@@ -33,7 +33,7 @@ function getQRCodeUrl(url) {
       const arrayOfLists = resp.records.map(
           record => {
             // 取得レコードのステータス更新
-            const jrec = JSON.parse(record);
+            const jrec = record.json();
             client.record.updateRecord({
               params:{app: jrec.app, id: jrec.id, 
                 record: {
