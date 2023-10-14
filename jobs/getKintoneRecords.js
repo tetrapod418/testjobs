@@ -37,7 +37,7 @@ function getQRCodeUrl(url) {
             const jrec = JSON.parse(srcData);
             const recparms = {
               app: APP_ID, 
-              id: jrec['$id'], 
+              id: jrec.$id, 
               record: {
                 'ステータス': {
                   'value': 'published'
