@@ -43,14 +43,15 @@ function getQRCodeUrl(url) {
     
               }})
         ));
- */        client.record.updateRecord(
+ */
+ /*        client.record.updateRecord(
           {app: APP_ID, id: resp.records[0], 
             record: {
               'ステータス': {
                 'value': 'published'
               }
   
-            }})
+            }}) */
 
     } catch (err) {
       console.log(err);
