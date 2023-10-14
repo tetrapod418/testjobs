@@ -37,11 +37,8 @@ function getQRCodeUrl(url) {
             const jrec = JSON.parse(srcData);
             client.record.updateRecord({
               params:{
-                app: jrec.app, 
-                updatekey: {
-                  field: 'id',
-                  value: jrec.$id
-                }, 
+                app: APP_ID, 
+                id: jrec['$id'], 
                 record: {
                   'ステータス': {
                     'value': 'published'
