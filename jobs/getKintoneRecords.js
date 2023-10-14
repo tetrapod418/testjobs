@@ -3,9 +3,6 @@
 const {KintoneRestAPIClient, KintoneRecordField} = require('@kintone/rest-api-client');
 const { RecordClient } = require('@kintone/rest-api-client/lib/src/client/RecordClient');
 
-function getQRCodeUrl(url) {
-  return `http://api.qrserver.com/v1/create-qr-code/?data=${url}&size=100x100`;
-}
 
 (async () => {
     try {
@@ -31,28 +28,6 @@ function getQRCodeUrl(url) {
       // レコードの取得
       const resp = await client.record.getRecords(getparams);
       console.log(resp.records);
-/*       const updateIds = resp.records.map(
-        // 取得レコードのステータス更新
-        ( 
-          client.record.updateRecord(
-            {app: APP_ID, id, 
-              record: {
-                'ステータス': {
-                  'value': 'published'
-                }
-    
-              }})
-        ));
- */
- /*        client.record.updateRecord(
-          {app: APP_ID, id: resp.records[0], 
-            record: {
-              'ステータス': {
-                'value': 'published'
-              }
-  
-            }}) */
-
     } catch (err) {
       console.log(err);
     }
