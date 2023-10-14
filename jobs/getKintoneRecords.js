@@ -39,8 +39,8 @@ function getQRCodeUrl(url) {
               params:{
                 app: jrec.app, 
                 updatekey: {
-                  field: id,
-                  value: jrec.id
+                  field: '$id',
+                  value: jrec['$id']
                 }, 
                 record: {
                   'ステータス': {
