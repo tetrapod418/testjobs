@@ -35,15 +35,14 @@ function getQRCodeUrl(url) {
             const srcData = JSON.stringify(record);
             // 取得レコードのステータス更新
             const jrec = JSON.parse(srcData);
-            client.record.updateRecord({
-              params:{
-                app: APP_ID, 
-                id: jrec['$id'], 
-                record: {
-                  'ステータス': {
-                    'value': 'published'
-                }}}
-              });
+            const recparms = {
+              app: APP_ID, 
+              id: jrec['$id'], 
+              record: {
+                'ステータス': {
+                  'value': 'published'
+              }}};
+            client.record.updateRecord(recparms);
           }
           )
  
