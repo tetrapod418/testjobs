@@ -2,6 +2,10 @@
 
 const {KintoneRestAPIClient, KintoneRecordField} = require('@kintone/rest-api-client');
 
+function getQRCodeUrl(url) {
+  return `http://api.qrserver.com/v1/create-qr-code/?data=${url}&size=100x100`;
+}
+
 (async () => {
     try {
       // クライアントの作成
@@ -21,6 +25,7 @@ const {KintoneRestAPIClient, KintoneRecordField} = require('@kintone/rest-api-cl
         fields:['$id', 'ステータス', 'title', 'URL', 'descriptions'],
         query: query_string
       };
+      
   
       // レコードの取得
       const resp = await client.record.getRecords(params);
