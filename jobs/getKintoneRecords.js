@@ -1,8 +1,10 @@
 'use strict';
 
 const {KintoneRestAPIClient, KintoneRecordField} = require('@kintone/rest-api-client');
-const { RecordClient } = require('@kintone/rest-api-client/lib/src/client/RecordClient');
 
+function getQRCodeUrl(url) {
+  return `http://api.qrserver.com/v1/create-qr-code/?data=${url}&size=100x100`;
+}
 
 (async () => {
     try {
@@ -18,7 +20,7 @@ const { RecordClient } = require('@kintone/rest-api-client/lib/src/client/Record
       // リクエストパラメータの設定
       const APP_ID = 2;
       const query_string = 'ステータス="accepted" order by $id';
-      const getparams = {
+      const params = {
         app: APP_ID,
         fields:['$id', 'ステータス', 'title', 'URL', 'descriptions'],
         query: query_string
@@ -26,8 +28,21 @@ const { RecordClient } = require('@kintone/rest-api-client/lib/src/client/Record
       
   
       // レコードの取得
-      const resp = await client.record.getRecords(getparams);
+      const resp = await client.record.getRecords(params);
       console.log(resp.records);
+      const arrayOfLists = resp.records.map(
+        
+        // 取得レコードのステータス更新
+        await client.record.updateRecord(2,
+            {app: APP_ID, id: record.id.value, 
+              record: {
+                'ステータス': {
+                  'value': 'published'
+                }
+    
+              }})
+        );
+  
     } catch (err) {
       console.log(err);
     }
