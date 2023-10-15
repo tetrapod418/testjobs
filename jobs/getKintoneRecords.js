@@ -26,16 +26,36 @@ function getQRCodeUrl(url) {
         query: query_string
       };
       
-  
-      // レコードの取得
+        // レコードの取得
       const resp = await client.record.getRecords(params);
       console.log(resp.records);
+      const LIST_PATH = './src/url_list.txt';
+
+      // リスト追加先のファイル準備
+      const fs = require('fs');
+      if( fs.existsSync(LIST_PATH) === false ) {
+        fs.open(LIST_PATH, 'w+', err => {
+          console.log(err.message);
+          return;
+        });
+      }
+
       const arrayOfLists = resp.records.map(
           record => {
+            // 取得データ→JSON→オブジェクト
             const srcData = JSON.stringify(record);
-            // 取得レコードのステータス更新
             const jrec = JSON.parse(srcData);
-            console.log(`jrec.$id=${jrec.$id.value}`);
+
+            // 取得データを表示対象リストに追加する
+            fs.appendFile(LIST_PATH, srcData, err => {
+              if( err ){
+                console.log(err.message);
+              } else {
+                console.log(`appendFile id=${jrec.$id.value}`);
+              }
+            }); 
+
+            // 取得レコードのステータス更新
             client.record.updateRecordStatus( {action:'公開する', app:APP_ID, id:jrec.$id.value})
           });
  
